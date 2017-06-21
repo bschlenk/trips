@@ -1,0 +1,36 @@
+{
+  "name": "trips",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --exec ts-node -- ./src/index.ts",
+    "pm2": "pm2 start bin/www ",
+    "test": "mocha api/**/*.spec.js"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "car2go": "^0.0.1",
+    "debug": "^2.6.3",
+    "dotenv": "^4.0.0",
+    "dotenv-safe": "^4.0.3",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.0.0",
+    "koa-onerror": "^3.1.0",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^6.0.2",
+    "lyft-node": "^0.0.5",
+    "node-geocoder": "^3.16.0",
+    "node-uber": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.1",
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "typescript": "^2.3.4"
+  }
+}
