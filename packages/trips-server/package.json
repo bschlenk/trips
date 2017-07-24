@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec ts-node -- ./src/index.ts",
+    "start": "nodemon --exec ts-node --ignore /node_modules/ --ignore /client/ -- ./src/index.ts",
     "pm2": "pm2 start bin/www ",
     "test": "mocha api/**/*.spec.js"
   },
