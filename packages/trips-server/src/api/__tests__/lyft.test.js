@@ -1,5 +1,5 @@
 const expect = require('expect');
-const lyft = require('./lyft');
+const lyft = require('../lyft');
 
 const home = {
   latitude: 47.6134369,

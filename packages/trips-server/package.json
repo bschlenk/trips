@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon --exec ts-node --ignore /node_modules/ --ignore /client/ -- ./src/index.ts",
     "pm2": "pm2 start bin/www ",
-    "test": "mocha api/**/*.spec.js"
+    "test": "mocha src/**/__tests__/*.test.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",

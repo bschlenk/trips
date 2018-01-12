@@ -1,5 +1,5 @@
 const expect = require('expect');
-const locations = require('./locations');
+const locations = require('../locations');
 
 const home = {
   latitude: 47.6134369,
