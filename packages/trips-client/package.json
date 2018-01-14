@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-google-maps": "^6.3.0"
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-google-maps": "^9.4.5"
   },
   "devDependencies": {
-    "react-scripts": "^0.9.5"
+    "react-scripts": "^1.0.17"
   },
   "scripts": {
     "start": "react-scripts start",

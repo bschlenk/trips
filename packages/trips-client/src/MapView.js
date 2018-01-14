@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import './MapView.css';
 
