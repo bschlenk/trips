@@ -2,44 +2,46 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import './MapView.css';
 
+const DEFAULT_ZOOM = 15;
+const DEFAULT_LOCATION = { lat: 47.613869, lng: -122.331772 };
+
 const MapViewInternal = withGoogleMap(props => (
   <GoogleMap
-      ref={props.onMapLoad.bind(this)}
-      defaultZoom={15}
-      defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+      defaultZoom={DEFAULT_ZOOM}
+      defaultCenter={DEFAULT_LOCATION}
+      {...props}
   />
 ));
 
 export default class MapView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      location: null,
-    };
-  }
+  state = {
+    error: null,
+    location: null,
+  };
 
   componentDidMount() {
     findLocation().then(location => {
       console.log('setting location to', location);
-      // this.setState({ location });
-      this.map.setCenter(location);
+      this.setState({ location });
     }).catch(error => {
       this.setState({ error });
     });
   }
 
   render() {
+    const { location } = this.state;
+    const zoom = location ? 18 : DEFAULT_ZOOM;
     return (
       <MapViewInternal
-          onMapLoad={e => this.map = e}
-          containerElement={
-            <div className="MapView__container" />
-          }
-          mapElement={
-            <div className="MapView__map" />
-          }
-          defaultCenter={this.state.location} />
+        containerElement={
+          <div className="MapView__container" />
+        }
+        mapElement={
+          <div className="MapView__map" />
+        }
+        center={location}
+        zoom={zoom}
+      />
     );
   }
 }

@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes  from 'prop-types';
 
 export default class SearchBar extends Component {
-
   static propTypes = {
     onSearch: PropTypes.func.isRequired,
   }
 
-  onClick(e) {
+  onClick = (e) => {
     e.preventDefault();
     this.props.onSearch(this.input.value);
   }
@@ -22,7 +21,7 @@ export default class SearchBar extends Component {
             placeholder="Where to?" />
         <button
             className="SearchBar__button"
-            onClick={this.onClick.bind(this)}
+            onClick={this.onClick}
             type="submit">
           Go
         </button>
