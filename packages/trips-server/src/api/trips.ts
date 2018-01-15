@@ -3,6 +3,7 @@ import { Estimate } from './estimate';
 import lyft from './lyft';
 import uber from './uber';
 import car2go from './car2go';
+import reachnow from './reachnow';
 
 export function getPriceEstimatesByAddress(
     start: string, end: string): Promise<Estimate[]> {
@@ -17,6 +18,7 @@ export function getPriceEstimates(
     lyft.getPriceEstimates(start, end),
     uber.getPriceEstimates(start, end),
     car2go.getPriceEstimates(start, end),
+    reachnow.getPriceEstimates(start, end),
   ]).then(results => {
     // concatenate all results into a single array
     return [].concat.apply([], results);

@@ -5,6 +5,9 @@ export interface Location {
   longitude: number;
 }
 
+/** Either a lat/lng pair or a string address. */
+export type LocationInput = string | Location;
+
 const geocoder = NodeGeocoder({
   provider: 'google',
 });
@@ -15,9 +18,8 @@ const geocoder = NodeGeocoder({
  * @returns {Promise<Location>} A promise containing the location.
  */
 export function find(query: string): Promise<Location> {
-  return geocoder.geocode(query).then(res => {
-    return res[0];
-  });
+  return geocoder.geocode(query)
+    .then(res => entryToLocation(res[0]));
 }
 
 /**
@@ -32,7 +34,12 @@ export function findAll(...queries: string[]): Promise<Location[]> {
       if (loc.error) {
         throw loc.error;
       }
-      return loc.value[0];
+      return entryToLocation(loc.value[0]);
     });
   });
+}
+
+function entryToLocation(entry: NodeGeocoder.Entry): Location {
+    const { latitude, longitude } = entry;
+    return { latitude, longitude };
 }

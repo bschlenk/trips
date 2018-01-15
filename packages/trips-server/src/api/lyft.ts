@@ -10,7 +10,7 @@ const {
 
 const lyft = new Lyft(LYFT_CLIENT_ID, LYFT_CLIENT_SECRET);
 
-const rideTypes = [
+const rideTypes: Lyft.RideType[] = [
   'lyft',
   'lyft_line',
   'lyft_plus',
@@ -25,16 +25,15 @@ const provider: EstimateProvider = {
         rideType,
       }).then(response => {
         const data = response.cost_estimates[0];
-        const estimate: Estimate = {
+        return {
           service: Service.LYFT,
           flavor: data.ride_type,
           duration: data.estimated_duration_seconds,
           price: {
             high: data.estimated_cost_cents_max,
             low: data.estimated_cost_cents_min,
-          }
-        }
-        return estimate;
+          },
+        };
       });
     }));
   }
