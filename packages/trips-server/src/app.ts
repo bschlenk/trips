@@ -29,6 +29,7 @@ app.use(views(join(__dirname, '..', 'views'), {
 }));
 
 // routes
-app.use(api.routes(), api.allowedMethods());
+app.use(api.routes());
+app.use(api.allowedMethods());
 
 export default app;

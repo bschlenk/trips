@@ -1,5 +1,4 @@
-const expect = require('expect');
-const lyft = require('../lyft');
+import lyft from '../lyft';
 
 const home = {
   latitude: 47.6134369,
@@ -18,7 +17,7 @@ describe('lyft', () => {
         expect(res.length).toEqual(3);
         console.log(res);
         res.forEach(a => {
-          console.log(a.cost_estimates[0]);
+          console.log(a);
         });
       });
     });

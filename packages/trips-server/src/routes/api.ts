@@ -11,8 +11,7 @@ router.get('/api/estimate/coords', async function(ctx, next) {
   if (!end) {
     ctx.throw('Query string parameter "end" is required', 400);
   }
-  const estimates = await trips.getPriceEstimates(start, end);
-  ctx.body = estimates;
+  ctx.body = await trips.getPriceEstimates(start, end);
 });
 
 router.get('/api/estimate/address', async function(ctx, next) {
@@ -23,8 +22,7 @@ router.get('/api/estimate/address', async function(ctx, next) {
   if (!end) {
     ctx.throw('Query string parameter "end" is required', 400);
   }
-  const estimates = await trips.getPriceEstimatesByAddress(start, end);
-  ctx.body = estimates;
+  ctx.body = await trips.getPriceEstimatesByAddress(start, end);
 });
 
 export default router;

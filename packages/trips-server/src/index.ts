@@ -5,10 +5,10 @@
  */
 
 import app from './app';
-import Debug from 'debug';
+import * as _debug from 'debug';
 import * as http from 'http';
 
-const debug = Debug('demo:server');
+const debug = _debug('demo:server');
 
 /**
  * Get port from environment and store in Express.
@@ -35,7 +35,7 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
+function normalizePort(val: any) {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -51,11 +51,16 @@ function normalizePort(val) {
   return false;
 }
 
+interface ServerError extends Error {
+  syscall?: string,
+  code?: string,
+}
+
 /**
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError(error: ServerError) {
   if (error.syscall !== 'listen') {
     throw error;
   }

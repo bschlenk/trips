@@ -31,3 +31,5 @@ lib-cov
 .idea
 .node_history
 
+# build artifacts
+dist
