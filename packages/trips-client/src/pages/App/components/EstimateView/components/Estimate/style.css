@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.Estimate {
+  list-style: none;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  padding: 5px;
+  max-width: 300px;
+}
+
+.Estimate__Header {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.Estimate__Flavor {
+  color: #ccc;
+}
+
+.Estimate__AppIcon {
+  height: 100%;
+}
+
+.Estimate__Info {
+  float: right;
+  text-align: right;
+}
+
+.Estimate__Duration {
+  margin-bottom: 5px;
+}

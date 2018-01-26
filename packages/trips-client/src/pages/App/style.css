@@ -9,10 +9,6 @@ html, body, #root {
 }
 
 .App {
-  text-align: center;
-}
-
-.App {
   height: 100%;
   width: 100%;
   position: absolute;
