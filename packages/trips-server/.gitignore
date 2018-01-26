@@ -33,3 +33,6 @@ lib-cov
 
 # build artifacts
 dist
+
+# yolo
+yarn.lock
