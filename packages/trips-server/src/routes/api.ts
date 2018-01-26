@@ -18,7 +18,7 @@ function parseCoords(value: string): Location {
   return { latitude, longitude };
 }
 
-router.get('/api/estimate/coords', async function(ctx, next) {
+router.get('/api/estimates/coords', async function(ctx, next) {
   const { start, end } = ctx.query;
   if (!start) {
     ctx.throw('Query string parameter "start" is required', 400);
@@ -31,7 +31,7 @@ router.get('/api/estimate/coords', async function(ctx, next) {
   ctx.body = await trips.getPriceEstimates(startCoords, endCoords);
 });
 
-router.get('/api/estimate/address', async function(ctx, next) {
+router.get('/api/estimates/address', async function(ctx, next) {
   const { start, end } = ctx.query;
   if (!start) {
     ctx.throw('Query string parameter "start" is required', 400);
