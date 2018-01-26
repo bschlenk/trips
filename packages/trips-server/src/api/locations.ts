@@ -1,4 +1,5 @@
 import * as NodeGeocoder from 'node-geocoder';
+import { lruCache } from './lru';
 
 export interface Location {
   latitude: number;
@@ -17,27 +18,49 @@ const geocoder = NodeGeocoder({
  * @param {string} query
  * @returns {Promise<Location>} A promise containing the location.
  */
-export function find(query: string): Promise<Location> {
-  return geocoder.geocode(query)
-    .then(res => entryToLocation(res[0]));
+export async function find(query: LocationInput): Promise<Location> {
+  if (typeof query === 'string') {
+    const res = await geocoder.geocode(query);
+    return entryToLocation(res[0]);
+  }
+  return query;
 }
 
 /**
  * Find the location of all the given queries.
  * @param {...string} queries Variadic list of queries.
- * @returns {Promise<Array<Location>>} A promise containing the
+ * @returns {Promise<Location[]>} A promise containing the
  *     resolved locations, in the requested order.
  */
-export function findAll(...queries: string[]): Promise<Location[]> {
-  return geocoder.batchGeocode(queries).then(res => {
-    return res.map(loc => {
+const findAll = lruCache(50,
+  async (...queries: LocationInput[]): Promise<Location[]> => {
+    const addresses: string[] = <string[]> queries
+      .filter(location => typeof location === 'string');
+
+    const res = await geocoder.batchGeocode(addresses);
+    const locations = res.map(loc => {
       if (loc.error) {
         throw loc.error;
       }
       return entryToLocation(loc.value[0]);
     });
+
+    const result: Location[] = [];
+
+    let i = 0;
+    queries.forEach((val, index) => {
+      if (typeof val === 'string') {
+        result[index] = locations[i];
+        ++i;
+      } else {
+        result[index] = val;
+      }
+    });
+
+    return result;
   });
-}
+
+export { findAll };
 
 function entryToLocation(entry: NodeGeocoder.Entry): Location {
     const { latitude, longitude } = entry;
