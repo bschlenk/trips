@@ -46,6 +46,6 @@ export default function Estimate(props) {
 Estimate.propTypes = {
   service: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired,
-  price: PropTypes.oneOf(PropTypes.number, PropTypes.object).isRequired,
+  price: PropTypes.oneOf([PropTypes.number, PropTypes.object]).isRequired,
   flavor: PropTypes.string,
 }
