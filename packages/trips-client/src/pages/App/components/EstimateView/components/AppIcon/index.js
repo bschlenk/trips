@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import uberSvg from './icons/uber.svg';
 import lyftSvg from './icons/lyft.svg';
 import car2goSvg from './icons/car2go.svg';
@@ -13,6 +14,12 @@ const appSvgMap = {
 
 export default function AppIcon({ app, className, ...props }) {
   const src = appSvgMap[app];
-  className = 'AppIcon' + (className || '');
-  return <img className={className} src={src} {...props} />;
+  return (
+    <img
+      alt={app}
+      className={cn('AppIcon', className)}
+      src={src}
+      {...props}
+    />
+  );
 }
