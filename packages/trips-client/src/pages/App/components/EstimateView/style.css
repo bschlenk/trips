@@ -1,0 +1,12 @@
+.EstimateView {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  overflow-y: auto;
+  width: calc(100% - 1rem);
+  border-radius: 3px;
+}
+
+.EstimateView > * {
+  margin-bottom: 0.5rem;
+}

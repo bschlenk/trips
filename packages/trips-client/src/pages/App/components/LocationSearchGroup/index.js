@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LocationSearchBox from './components/LocationSearchBox';
+import Centered from 'components/responsive/Centered';
 import './style.css';
 
 export default class LocationSearchGroup extends Component {
@@ -29,16 +30,18 @@ export default class LocationSearchGroup extends Component {
 
   render() {
     return (
-      <div className="LocationSearchGroup">
-        <LocationSearchBox
-          placeholder="Starting Point"
-          onChange={this.onStartChange}
-        />
-        <LocationSearchBox
-          placeholder="Destination"
-          onChange={this.onEndChange}
-        />
-      </div>
+      <Centered>
+        <div className="LocationSearchGroup">
+          <LocationSearchBox
+            placeholder="Starting Point"
+            onChange={this.onStartChange}
+          />
+          <LocationSearchBox
+            placeholder="Destination"
+            onChange={this.onEndChange}
+          />
+        </div>
+      </Centered>
     )
   }
 }

@@ -1,10 +1,8 @@
 .LocationSearchGroup {
   position: absolute;
   top: 0.5rem;
-  left: 50%;
-  width: calc(100% - 1rem);
   z-index: 10;
-  transform: translateX(-50%);
+  width: calc(100% - 1rem);
 }
 
 @media only screen and (min-width: 500px) {
