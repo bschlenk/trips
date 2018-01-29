@@ -3,15 +3,22 @@ import MapView from './components/MapView';
 import LocationSearchGroup from './components/LocationSearchGroup';
 import EstimateView from './components/EstimateView';
 import * as client from 'utils/client';
+import { findLocation } from 'utils/map';
 import './style.css';
 
 export default class App extends Component {
-  state = {}
+  state = {
+    location: undefined,
+    error: null,
+  }
 
-  onStartChange = (start) => {
-    console.log('got start location: %j', start);
-    this.start = start;
-    this.updateEstimates();
+  componentDidMount() {
+    findLocation().then(location => {
+      console.log('setting location to', location);
+      this.setState({ location });
+    }).catch(error => {
+      this.setState({ error });
+    });
   }
 
   updateEstimates = ({ start, end }) => {
@@ -20,7 +27,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { estimates } = this.state;
+    const { estimates, location } = this.state;
     return (
       <div className="App">
         <LocationSearchGroup

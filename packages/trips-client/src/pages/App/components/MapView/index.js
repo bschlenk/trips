@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { findLocation } from 'utils/map';
 import './style.css';
 
 const DEFAULT_ZOOM = 16;
@@ -25,17 +24,8 @@ const MapViewInternal = withGoogleMap((props) => {
 });
 
 export default class MapView extends Component {
-  state = {
-    error: null,
-  };
-
-  componentDidMount() {
-    findLocation().then(location => {
-      console.log('setting location to', location);
-      this.setState({ location });
-    }).catch(error => {
-      this.setState({ error });
-    });
+  static propTypes = {
+    location: PropTypes.object,
   }
 
   render() {
