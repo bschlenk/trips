@@ -47,7 +47,7 @@ export default class LocationSearchBox extends Component {
       >
         <Input
           className="LocationSearchBox__Input"
-          placeholer={placeholder}
+          placeholder={placeholder}
         />
       </StandaloneSearchBox>
     );
