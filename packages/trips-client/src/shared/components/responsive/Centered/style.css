@@ -1,6 +1,7 @@
 .ResponsiveCentered {
   left: 50%;
   transform: translateX(-50%);
+  width: calc(100% - 1rem);
 }
 
 @media only screen and (min-width: 500px) {

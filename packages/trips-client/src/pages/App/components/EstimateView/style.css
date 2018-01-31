@@ -3,8 +3,9 @@
   bottom: 0;
   height: 50%;
   overflow-y: auto;
-  width: calc(100% - 1rem);
   border-radius: 3px;
+  -webkit-padding-start: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 .EstimateView > * {

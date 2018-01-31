@@ -17,7 +17,14 @@ function Price({ value, ...props }) {
 
 function Duration({ value, ...props }) {
   const minutes = Math.round(value / 60);
-  return <span {...props}>{minutes} minutes</span>;
+  const { className } = props;
+  return (
+    <span {...props}>
+      <span className={className && `${className}__Value`}>{minutes}</span>
+      <br />
+      <span className={className && `${className}__Unit`}>minutes</span>
+    </span>
+  );
 }
 
 export default function Estimate(props) {
@@ -36,7 +43,6 @@ export default function Estimate(props) {
       <AppIcon className="Estimate__AppIcon" app={service} />
       <div className="Estimate__Info">
         <Duration className="Estimate__Duration" value={duration} />
-        <br />
         <Price className="Estimate__Price" value={price} />
       </div>
     </li>
