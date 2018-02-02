@@ -5,10 +5,10 @@ import * as onerror from 'koa-onerror';
 import * as BodyParser from 'koa-bodyparser';
 import * as koastatic from 'koa-static';
 import * as logger from 'koa-logger';
-import * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv-safe';
 import { join } from 'path';
 
-dotenv.config();
+dotenv.load();
 
 import api from './routes/api';
 

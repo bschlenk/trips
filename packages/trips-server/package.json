@@ -13,11 +13,9 @@
     "prepublishOnly": "npm run test && npm run build"
   },
   "dependencies": {
-    "@google/maps": "^0.4.5",
     "babel-polyfill": "^6.23.0",
     "car2go": "^0.0.1",
     "debug": "^3.1.0",
-    "dotenv": "^4.0.0",
     "dotenv-safe": "^4.0.4",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
@@ -34,8 +32,10 @@
     "node-uber": "^2.0.0"
   },
   "devDependencies": {
+    "@google/maps": "^0.4.5",
     "@types/debug": "^0.0.30",
     "@types/dotenv": "^4.0.2",
+    "@types/dotenv-safe": "^4.0.1",
     "@types/jest": "^21.1.9",
     "@types/koa-bodyparser": "^3.0.26",
     "@types/koa-json": "^2.0.18",
