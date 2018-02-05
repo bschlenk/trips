@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import { Location, findAll } from './locations';
 import { Estimate } from './estimate';
 import lyft from './lyft';
@@ -19,8 +20,15 @@ export function getPriceEstimates(
     uber.getPriceEstimates(start, end),
     car2go.getPriceEstimates(start, end),
     reachnow.getPriceEstimates(start, end),
-  ]).then(results => {
-    // concatenate all results into a single array
-    return [].concat.apply([], results);
-  });
+  ])
+  .then(flatten)
+  .then(sortEstimates);
+}
+
+function flatten <T> (input: Array<T>[]): Array<T> {
+  return Array.prototype.concat.apply([], input);
+}
+
+function sortEstimates(estimates: Estimate[]): Estimate[] {
+  return _.sortBy(estimates, e => e.estimate ? e.estimate.price.low : 99999);
 }
