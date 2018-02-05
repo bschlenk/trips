@@ -4,6 +4,24 @@ import { Location } from '../api/locations';
 
 const router = new Router();
 
+router.get('/api/estimates/coords', async (ctx, next) => {
+  const { start, end } = ctx.query;
+  validateStartEnd(ctx, start, end);
+  const startCoords = parseCoords(start);
+  const endCoords = parseCoords(end);
+  try {
+    ctx.body = await trips.getPriceEstimates(startCoords, endCoords);
+  } catch (err) {
+    ctx.throw(err);
+  }
+});
+
+router.get('/api/estimates/address', async (ctx, next) => {
+  const { start, end } = ctx.query;
+  validateStartEnd(ctx, start, end);
+  ctx.body = await trips.getPriceEstimatesByAddress(start, end);
+});
+
 function parseCoords(value: string): Location {
   const [lat, lng] = value.split(',')
   if (!lat || !lng) {
@@ -18,28 +36,17 @@ function parseCoords(value: string): Location {
   return { latitude, longitude };
 }
 
-router.get('/api/estimates/coords', async function(ctx, next) {
-  const { start, end } = ctx.query;
+function validateStartEnd(
+  ctx: Router.IRouterContext,
+  start: string,
+  end: string,
+) {
   if (!start) {
     ctx.throw('Query string parameter "start" is required', 400);
   }
   if (!end) {
     ctx.throw('Query string parameter "end" is required', 400);
   }
-  const startCoords = parseCoords(start);
-  const endCoords = parseCoords(end);
-  ctx.body = await trips.getPriceEstimates(startCoords, endCoords);
-});
-
-router.get('/api/estimates/address', async function(ctx, next) {
-  const { start, end } = ctx.query;
-  if (!start) {
-    ctx.throw('Query string parameter "start" is required', 400);
-  }
-  if (!end) {
-    ctx.throw('Query string parameter "end" is required', 400);
-  }
-  ctx.body = await trips.getPriceEstimatesByAddress(start, end);
-});
+}
 
 export default router;
