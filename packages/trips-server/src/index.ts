@@ -4,6 +4,9 @@ import app from './app';
 import * as _debug from 'debug';
 import * as http from 'http';
 
+if (process.env.NODE_ENV !== 'production') {
+  require('longjohn');
+}
 
 const debug = _debug('demo:server');
 

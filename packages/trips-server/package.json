@@ -27,6 +27,7 @@
     "koa-static": "^4.0.1",
     "koa-views": "^6.0.2",
     "lodash": "^4.17.5",
+    "longjohn": "^0.2.12",
     "lru-cache": "^4.1.1",
     "lyft-node": "^0.0.5",
     "node-geocoder": "^3.18.0",
