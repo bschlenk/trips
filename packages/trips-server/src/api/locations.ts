@@ -64,5 +64,8 @@ export { findAll };
 
 function entryToLocation(entry: NodeGeocoder.Entry): Location {
     const { latitude, longitude } = entry;
+    if (latitude == null || longitude == null) {
+      throw new Error('expected latitude and longitude from geocoder');
+    }
     return { latitude, longitude };
 }

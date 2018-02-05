@@ -1,8 +1,11 @@
+import * as _debug from 'debug';
 import { Location } from './locations';
 import { Estimate, EstimateProvider } from './estimate';
 import Service from './service';
 import { computeDistance } from './distance';
 import { calculateCost, PriceStructure } from './durationpricing';
+
+const debug = _debug('app:car2go');
 
 const pricing: {[key: string]: PriceStructure} = {
   FOR_TWO: {
@@ -23,17 +26,31 @@ const pricing: {[key: string]: PriceStructure} = {
 };
 
 const provider: EstimateProvider = {
-  async getPriceEstimates(start: Location, end: Location): Promise<Estimate[]> {
-    const { distance, duration } = await computeDistance(start, end);
-    return Object.entries(pricing).map(([flavor, prices]) => {
-      const price = calculateCost(duration, prices);
-      return {
+  async getPriceEstimates(start: Location, end: Location) {
+    try {
+      const { distance, duration } = await computeDistance(start, end);
+      return Object.entries(pricing).map(([flavor, prices]) => {
+        const price = calculateCost(duration, prices);
+        debug('returning data from car2go');
+        return {
+          service: Service.CAR2GO,
+          estimate: {
+            flavor,
+            price: {
+              high: price,
+              low: price,
+            },
+            duration,
+          },
+        };
+      });
+    } catch (err) {
+      debug('returning error from car2go: %j', err);
+      return [{
         service: Service.CAR2GO,
-        flavor,
-        price,
-        duration,
-      };
-    });
+        error: `Failed to find estimate for car2go: ${err.message}`,
+      }];
+    }
   }
 };
 

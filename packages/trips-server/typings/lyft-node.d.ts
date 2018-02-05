@@ -22,6 +22,9 @@ declare module 'lyft-node' {
       estimated_duration_seconds: number,
       estimated_cost_cents_min: number,
       estimated_cost_cents_max: number,
+      error_message?: string,
+      display_name: string,
+      can_request_ride: boolean,
     }
 
     type RideType = 'lyft' | 'lyft_line' | 'lyft_plus';

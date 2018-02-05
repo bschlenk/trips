@@ -8,7 +8,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage:open": "open ./coverage/lcov-report/index.html",
-    "start": "nodemon",
+    "start": "DEBUG=app:* nodemon",
     "build": "tsc",
     "prepublishOnly": "npm run test && npm run build"
   },

@@ -1,14 +1,17 @@
 import * as Lyft from 'lyft-node';
+import * as _debug from 'debug';
 import { Location } from './locations';
 import Service from './service';
-import { Estimate, EstimateProvider } from './estimate';
+import { Estimate, EstimateResult, EstimateProvider } from './estimate';
+
+const debug = _debug('app:lyft');
 
 const {
   LYFT_CLIENT_ID,
   LYFT_CLIENT_SECRET,
 } = process.env;
 
-const lyft = new Lyft(LYFT_CLIENT_ID, LYFT_CLIENT_SECRET);
+const lyft = new Lyft(LYFT_CLIENT_ID!, LYFT_CLIENT_SECRET!);
 
 const rideTypes: Lyft.RideType[] = [
   'lyft',
@@ -17,24 +20,37 @@ const rideTypes: Lyft.RideType[] = [
 ];
 
 const provider: EstimateProvider = {
-  getPriceEstimates(start: Location, end: Location): Promise<Estimate[]> {
-    return Promise.all(rideTypes.map(rideType => {
-      return lyft.getRideEstimates({
-        start,
-        end,
-        rideType,
-      }).then(response => {
+  getPriceEstimates(start: Location, end: Location): Promise<EstimateResult[]> {
+    return Promise.all(rideTypes.map(async (rideType) => {
+      try {
+        const response = await lyft.getRideEstimates({ start, end, rideType });
         const data = response.cost_estimates[0];
+        if (data.error_message) {
+          return {
+            service: Service.LYFT,
+            error: data.error_message,
+          };
+        }
+
+        debug('returning data from lyft');
         return {
           service: Service.LYFT,
-          flavor: data.ride_type,
-          duration: data.estimated_duration_seconds,
-          price: {
-            high: data.estimated_cost_cents_max,
-            low: data.estimated_cost_cents_min,
-          },
+          estimate: {
+            flavor: data.display_name,
+            duration: data.estimated_duration_seconds,
+            price: {
+              high: data.estimated_cost_cents_max,
+              low: data.estimated_cost_cents_min,
+            },
+          }
         };
-      });
+      } catch (err) {
+        debug('returning error from lyft: %j', err);
+        return {
+          service: Service.LYFT,
+          error: `There was an error getting an estimate from Lyft: ${err.message}`,
+        };
+      }
     }));
   }
 };

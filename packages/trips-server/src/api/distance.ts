@@ -110,9 +110,21 @@ export function computeDistance(start: LocationInput, end: LocationInput):
         return;
       }
       const element = response.json.rows[0].elements[0]
+      if (element.status !== 'OK') {
+        reject(new Error(getErrorMessage(element.status)));
+        return;
+      }
       const duration = element.duration.value;
       const distance = element.distance.value;
       resolve({ duration, distance });
     });
   });
+}
+
+function getErrorMessage(status: string): string {
+  switch (status) {
+    case 'ZERO_RESULTS':
+      return 'No route could be found between origin and destination';
+  }
+  return `Could not get distance from google: ${status}`;
 }

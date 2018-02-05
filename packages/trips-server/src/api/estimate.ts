@@ -8,13 +8,20 @@ export interface PriceRange {
   low: number
 }
 
+export interface EstimateResult {
+    /** The name of the ride service. */
+    service: Service;
+    /** The estimate object. */
+    estimate?: Estimate;
+    /** The error that occured, if any. */
+    error?: string;
+}
+
 export interface Estimate {
     /** The price estimate, in cents. */
-    price: number | PriceRange;
+    price: PriceRange;
     /** The trip dration estimate, in seconds. */
     duration: number;
-    /** The name of the ride service. TODO: make an enum? */
-    service: Service;
     /** The type of ride, specific to the service. */
     flavor?: string;
 }
@@ -24,5 +31,20 @@ export interface Estimate {
  * given start and end points.
  */
 export interface EstimateProvider {
-    getPriceEstimates(start: Location, end: Location): Promise<Estimate[]>;
+    getPriceEstimates(
+        start: Location,
+        end: Location,
+    ): Promise<EstimateResult[]>;
+}
+
+/**
+ * Create a `PriceRange` where the high and low are equal.
+ * @param price The single price point.
+ * @return A `PriceRange` object.
+ */
+export function pricePoint(price: number): PriceRange {
+    return {
+        high: price,
+        low: price,
+    };
 }
