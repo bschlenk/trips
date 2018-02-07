@@ -22,7 +22,7 @@ app.use(bodyparser);
 app.use(json());
 app.use(logger());
 app.use(cors({
-  origin: 'http://trips.bschlenk.com',
+  origin: process.env.ALLOW_ORIGIN,
 }));
 
 // routes
