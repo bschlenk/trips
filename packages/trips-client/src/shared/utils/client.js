@@ -10,17 +10,6 @@ function locationToQuery(location) {
   return `${lat},${lng}`;
 }
 
-function lowPrice(estimate) {
-  const { price } = estimate;
-  return (isNumber(price))
-    ? price
-    : price.low;
-}
-
-function sortEstimates(estimates) {
-  return sortBy(estimates, lowPrice);
-}
-
 export function getEstimates(start, end) {
   const s = locationToQuery(start);
   const e = locationToQuery(end);
@@ -32,6 +21,5 @@ export function getEstimates(start, end) {
         throw new Error(`Failed to fetch estimates: ${res.statusText} (${res.status})`);
       }
       return res.json();
-    })
-    .then(sortEstimates);
+    });
 }
