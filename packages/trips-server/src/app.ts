@@ -2,7 +2,7 @@ import * as Koa from 'koa';
 import * as json from 'koa-json';
 import * as onerror from 'koa-onerror';
 import * as BodyParser from 'koa-bodyparser';
-import * as cors from 'koa-cors';
+import * as cors from 'koa2-cors';
 import * as logger from 'koa-logger';
 import * as dotenv from 'dotenv-safe';
 import { join } from 'path';
