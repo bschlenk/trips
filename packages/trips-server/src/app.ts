@@ -4,6 +4,7 @@ import * as json from 'koa-json';
 import * as onerror from 'koa-onerror';
 import * as BodyParser from 'koa-bodyparser';
 import * as koastatic from 'koa-static';
+import * as cors from 'koa-cors';
 import * as logger from 'koa-logger';
 import * as dotenv from 'dotenv-safe';
 import { join } from 'path';
@@ -26,6 +27,10 @@ app.use(koastatic(join(__dirname, '..', 'public')));
 
 app.use(views(join(__dirname, '..', 'views'), {
   extension: 'jade'
+}));
+
+app.use(cors({
+  origin: 'http://trips.bschlenk.com',
 }));
 
 // routes
