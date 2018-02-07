@@ -41,6 +41,7 @@ export default class LocationSearchBox extends Component {
       <StandaloneSearchBox
         ref={ref => this.searchBox = ref}
         className="LocationSearchBox"
+        placeholer={placeholder}
         onPlacesChanged={this.onPlacesChanged}
         bounds={bounds}
       >
