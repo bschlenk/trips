@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Estimate from './components/Estimate';
+import range from 'lodash-es/range';
+import EstimateWrapper from './components/EstimateWrapper';
+import EstimateFacade from './components/EstimateFacade';
 import Centered from 'components/responsive/Centered';
 import './style.css';
 
@@ -10,14 +12,16 @@ export default class EstimateView extends Component {
   }
 
   render() {
+    const { loading } = this.props;
     return (
       <Centered>
         <ul className="EstimateView">
-          {this.props.estimates.map(estimate => {
-            const { service, flavor } = estimate;
-            const key = `${service}#${flavor}`;
-            return <Estimate key={key} {...estimate} />;
-          })}
+          {
+            loading
+              ? range(4).map(() => <EstimateFacade />)
+              : this.props.estimates.map(estimate => (
+                <EstimateWrapper {...{ estimate }} />))
+          }
         </ul>
       </Centered>
     );

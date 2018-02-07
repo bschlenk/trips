@@ -1,5 +1,4 @@
 .Estimate {
-  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
   list-style: none;
   display: block;
   border: 1px solid transparent;
@@ -42,11 +41,13 @@
 
 
 .Estimate__InfoGroup {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: normal;
   display: flex;
   flex-direction: row;
   text-align: center;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   justify-content: space-around;
   padding: 5px;
 }
@@ -66,6 +67,6 @@
 }
 
 .Estimate__Duration__Unit {
-  font-size: 1.75rem;
+  font-size: 1rem;
   color: #333;
 }

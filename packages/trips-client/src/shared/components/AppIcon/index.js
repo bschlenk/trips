@@ -6,14 +6,14 @@ import car2goSvg from './icons/car2go.svg';
 import reachNowSvg from './icons/reachnow.svg';
 
 const appSvgMap = {
-  Uber: uberSvg,
-  Lyft: lyftSvg,
+  uber: uberSvg,
+  lyft: lyftSvg,
   car2go: car2goSvg,
-  ReachNow: reachNowSvg,
+  reachnow: reachNowSvg,
 };
 
 export default function AppIcon({ app, className, ...props }) {
-  const src = appSvgMap[app];
+  const src = appSvgMap[app.toLowerCase()];
   return (
     <img
       alt={app}
