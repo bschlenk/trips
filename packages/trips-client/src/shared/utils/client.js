@@ -1,6 +1,3 @@
-import isNumber from 'lodash-es/isNumber';
-import sortBy from 'lodash-es/sortBy';
-
 const endpoint = (process.env.NODE_ENV === 'production')
   ? process.env.REACT_APP_API_HOSTNAME
   : '';

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Estimate from './components/Estimate';
 import EstimateError from './components/EstimateError';
 
