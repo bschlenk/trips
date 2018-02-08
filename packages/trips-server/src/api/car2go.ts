@@ -7,6 +7,8 @@ import { calculateCost, PriceStructure } from './durationpricing';
 
 const debug = _debug('app:car2go');
 
+const fees = 100; // driver protection fee
+
 const pricing: {[key: string]: PriceStructure} = {
   FOR_TWO: {
     minute: 35,
@@ -36,7 +38,7 @@ const provider: EstimateProvider = {
     try {
       const { distance, duration } = await computeDistance(start, end);
       return Object.entries(pricing).map(([flavor, prices]) => {
-        const price = calculateCost(duration, prices);
+        const price = calculateCost(duration, prices) + fees;
         debug('returning data from car2go');
         return {
           service: Service.CAR2GO,
