@@ -25,6 +25,12 @@ const pricing: {[key: string]: PriceStructure} = {
   }
 };
 
+const displayNames: {[key: string]: string} = {
+  FOR_TWO: 'For Two',
+  GLA: 'Mercedes-Benz GLA',
+  CLA: 'Mercedes-Benz CLA',
+};
+
 const provider: EstimateProvider = {
   async getPriceEstimates(start: Location, end: Location) {
     try {
@@ -35,7 +41,7 @@ const provider: EstimateProvider = {
         return {
           service: Service.CAR2GO,
           estimate: {
-            flavor,
+            flavor: displayNames[flavor],
             price: {
               high: price,
               low: price,
