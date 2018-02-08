@@ -2,13 +2,14 @@
   box-sizing: border-box;
   border: 1px solid transparent;
   width: 100%;
-  height: 32px;
+  height: 36px;
   padding: 0 12px;
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  font-size: 14px;
+  font-size: 1.25rem;
   outline: none;
   text-overflow: ellipses;
+  -webkit-appearance: none;
 }
 
 .LocationSearchBox__Input:first-child {
@@ -19,4 +20,11 @@
 .LocationSearchBox__Input:last-child {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+}
+
+@media only screen and (min-width: 500px) {
+  .LocationSearchBox__Input {
+    font-size: 1rem;
+    height: 32px;
+  }
 }
