@@ -4,10 +4,10 @@ import * as onerror from 'koa-onerror';
 import * as BodyParser from 'koa-bodyparser';
 import * as cors from 'koa2-cors';
 import * as logger from 'koa-logger';
-import * as dotenv from 'dotenv-safe';
 import { join } from 'path';
 
-dotenv.load();
+// this must be done before loading roues
+import './load-env'
 
 import api from './routes/api';
 
