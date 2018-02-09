@@ -1,9 +1,9 @@
 import * as _debug from 'debug';
-import { Location } from './locations';
-import { Estimate, EstimateProvider, pricePoint } from './estimate';
-import Service from './service';
 import { computeDistance } from './distance';
 import { calculateCost, PriceStructure } from './durationpricing';
+import { Estimate, EstimateProvider, pricePoint } from './estimate';
+import { Location } from './locations';
+import Service from './service';
 
 const debug = _debug('app:car2go');
 
@@ -23,8 +23,8 @@ const provider: EstimateProvider = {
         {
           service: Service.REACH_NOW,
           estimate: {
-            price: pricePoint(price),
             duration,
+            price: pricePoint(price),
           },
         },
       ];
@@ -35,8 +35,7 @@ const provider: EstimateProvider = {
         error: `Failed to find estimate for reachnow: ${err.message}`,
       }];
     }
-  }
+  },
 };
 
 export default provider;
-

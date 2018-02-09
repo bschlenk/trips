@@ -32,13 +32,15 @@ export async function find(query: LocationInput): Promise<Location> {
  * @returns {Promise<Location[]>} A promise containing the
  *     resolved locations, in the requested order.
  */
-const findAll = lruCache(50,
+const findAll = lruCache(
+  50,
   async (...queries: LocationInput[]): Promise<Location[]> => {
-    const addresses: string[] = <string[]> queries
-      .filter(location => typeof location === 'string');
+    const addresses: string[] = queries.filter(
+      location => typeof location === 'string',
+    ) as string[];
 
     const res = await geocoder.batchGeocode(addresses);
-    const locations = res.map(loc => {
+    const locations = res.map((loc) => {
       if (loc.error) {
         throw loc.error;
       }
@@ -63,9 +65,9 @@ const findAll = lruCache(50,
 export { findAll };
 
 function entryToLocation(entry: NodeGeocoder.Entry): Location {
-    const { latitude, longitude } = entry;
-    if (latitude == null || longitude == null) {
-      throw new Error('expected latitude and longitude from geocoder');
-    }
-    return { latitude, longitude };
+  const { latitude, longitude } = entry;
+  if (latitude == null || longitude == null) {
+    throw new Error('expected latitude and longitude from geocoder');
+  }
+  return { latitude, longitude };
 }

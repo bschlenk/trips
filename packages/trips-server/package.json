@@ -8,6 +8,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage:open": "open ./coverage/lcov-report/index.html",
+    "lint": "tslint --project .",
     "watch": "DEBUG=app:* nodemon",
     "start": "node ./dist/index.js",
     "build": "tsc",
@@ -55,7 +56,7 @@
     "nodemon": "^1.12.5",
     "ts-jest": "^21.2.4",
     "tslint": "^5.9.1",
-    "tslint-config-airbnb": "^5.4.2",
+    "tslint-config-airbnb": "^5.6.0",
     "typescript": "^2.6.2"
   },
   "engines": {

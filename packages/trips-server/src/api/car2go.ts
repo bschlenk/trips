@@ -1,9 +1,9 @@
 import * as _debug from 'debug';
-import { Location } from './locations';
-import { Estimate, EstimateProvider } from './estimate';
-import Service from './service';
 import { computeDistance } from './distance';
 import { calculateCost, PriceStructure } from './durationpricing';
+import { Estimate, EstimateProvider, pricePoint } from './estimate';
+import { Location } from './locations';
+import Service from './service';
 
 const debug = _debug('app:car2go');
 
@@ -24,7 +24,7 @@ const pricing: {[key: string]: PriceStructure} = {
     minute: 45,
     hour: 1900,
     day: 7900,
-  }
+  },
 };
 
 const displayNames: {[key: string]: string} = {
@@ -43,12 +43,9 @@ const provider: EstimateProvider = {
         return {
           service: Service.CAR2GO,
           estimate: {
-            flavor: displayNames[flavor],
-            price: {
-              high: price,
-              low: price,
-            },
             duration,
+            flavor: displayNames[flavor],
+            price: pricePoint(price),
           },
         };
       });
@@ -59,8 +56,7 @@ const provider: EstimateProvider = {
         error: `Failed to find estimate for car2go: ${err.message}`,
       }];
     }
-  }
+  },
 };
 
 export default provider;
-

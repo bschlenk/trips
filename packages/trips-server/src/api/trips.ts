@@ -1,14 +1,14 @@
 import * as _ from 'lodash';
-import { Location, findAll } from './locations';
-import { EstimateResult } from './estimate';
-import lyft from './lyft';
-import uber from './uber';
 import car2go from './car2go';
+import { EstimateResult } from './estimate';
+import { findAll, Location } from './locations';
+import lyft from './lyft';
 import reachnow from './reachnow';
+import uber from './uber';
 
 export function getPriceEstimatesByAddress(
-    start: string, end: string): Promise<EstimateResult[]> {
-  return findAll(start, end).then(([start, end]) => {
+    startAddress: string, endAddress: string): Promise<EstimateResult[]> {
+  return findAll(startAddress, endAddress).then(([start, end]) => {
     return getPriceEstimates(start, end);
   });
 }
@@ -25,7 +25,7 @@ export function getPriceEstimates(
   .then(sortEstimates);
 }
 
-function flatten <T> (input: Array<T>[]): Array<T> {
+function flatten <T>(input: T[][]): T[] {
   return Array.prototype.concat.apply([], input);
 }
 

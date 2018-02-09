@@ -13,8 +13,8 @@ export interface DistanceResponse {
 }
 
 interface LatLng {
-  lat: number,
-  lng: number,
+  lat: number;
+  lng: number;
 }
 
 function locationToGmapsLocation(loc: LocationInput): LatLng | string {
@@ -28,7 +28,7 @@ function locationToGmapsLocation(loc: LocationInput): LatLng | string {
 type ElementStatus =
   /** Indicates the response contains a valid result. */
   'OK' |
-  /** Indicates that the provided request was invalid.*/
+  /** Indicates that the provided request was invalid. */
   'INVALID_REQUEST' |
   /**
    * Indicates that the product of origins and destinations
@@ -96,28 +96,31 @@ interface DistanceMatrixResponse {
 export function computeDistance(start: LocationInput, end: LocationInput):
     Promise<DistanceResponse> {
   return new Promise((resolve, reject) => {
-    googleMapsClient.distanceMatrix({
-      units: 'imperial',
-      origins: [locationToGmapsLocation(start)],
-      destinations: [locationToGmapsLocation(end)],
-    }, (err: Error, response: DistanceMatrixResponse) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      if (response.status >= 400) {
-        reject(new Error(`Google Distance Matrix returned ${response.status} status`));
-        return;
-      }
-      const element = response.json.rows[0].elements[0]
-      if (element.status !== 'OK') {
-        reject(new Error(getErrorMessage(element.status)));
-        return;
-      }
-      const duration = element.duration.value;
-      const distance = element.distance.value;
-      resolve({ duration, distance });
-    });
+    googleMapsClient.distanceMatrix(
+      {
+        units: 'imperial',
+        origins: [locationToGmapsLocation(start)],
+        destinations: [locationToGmapsLocation(end)],
+      },
+      (err: Error, response: DistanceMatrixResponse) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        if (response.status >= 400) {
+          reject(new Error(`Google Distance Matrix returned ${response.status} status`));
+          return;
+        }
+        const element = response.json.rows[0].elements[0];
+        if (element.status !== 'OK') {
+          reject(new Error(getErrorMessage(element.status)));
+          return;
+        }
+        const duration = element.duration.value;
+        const distance = element.distance.value;
+        resolve({ duration, distance });
+      },
+    );
   });
 }
 

@@ -1,6 +1,6 @@
 import * as Router from 'koa-router';
-import * as trips from '../api/trips';
 import { Location } from '../api/locations';
+import * as trips from '../api/trips';
 
 const router = new Router();
 
@@ -23,7 +23,7 @@ router.get('/api/estimates/address', async (ctx, next) => {
 });
 
 function parseCoords(value: string): Location {
-  const [lat, lng] = value.split(',')
+  const [lat, lng] = value.split(',');
   if (!lat || !lng) {
     throw new Error(
       'Coordinates must be given in the form "<latitude>,<longitude>"');

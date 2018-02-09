@@ -1,20 +1,14 @@
-import * as Uber from 'node-uber';
 import * as _debug from 'debug';
+import * as Uber from 'node-uber';
 import { Estimate, EstimateProvider } from './estimate';
 import Service from './service';
 
 const debug = _debug('app:uber');
 
-const {
-  UBER_CLIENT_ID: client_id,
-  UBER_CLIENT_SECRET: client_secret,
-  UBER_SERVER_TOKEN: server_token,
-} = process.env;
-
 const uber = new Uber({
-  client_id,
-  client_secret,
-  server_token,
+  client_id:     process.env.UBER_CLIENT_ID,
+  client_secret: process.env.UBER_CLIENT_SECRET,
+  server_token:  process.env.UBER_SERVER_TOKEN,
 });
 
 const provider: EstimateProvider = {
@@ -33,8 +27,8 @@ const provider: EstimateProvider = {
       const prices = await uber.estimates.getPriceForRouteAsync(
           startLat, startLon, endLat, endLon);
 
-      debug('returning prices from uber')
-      return prices.prices.map(data => {
+      debug('returning prices from uber');
+      return prices.prices.map((data) => {
         return {
           service: Service.UBER,
           estimate: {
@@ -56,7 +50,7 @@ const provider: EstimateProvider = {
         error: message,
       }];
     }
-  }
+  },
 };
 
 export default provider;

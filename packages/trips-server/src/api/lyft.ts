@@ -1,8 +1,8 @@
-import * as Lyft from 'lyft-node';
 import * as _debug from 'debug';
+import * as Lyft from 'lyft-node';
+import { Estimate, EstimateProvider, EstimateResult } from './estimate';
 import { Location } from './locations';
 import Service from './service';
-import { Estimate, EstimateResult, EstimateProvider } from './estimate';
 
 const debug = _debug('app:lyft');
 
@@ -42,7 +42,7 @@ const provider: EstimateProvider = {
               high: data.estimated_cost_cents_max,
               low: data.estimated_cost_cents_min,
             },
-          }
+          },
         };
       } catch (err) {
         debug('returning error from lyft: %j', err);
@@ -52,7 +52,7 @@ const provider: EstimateProvider = {
         };
       }
     }));
-  }
+  },
 };
 
 export default provider;

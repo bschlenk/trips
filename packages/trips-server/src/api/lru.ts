@@ -1,7 +1,7 @@
 import * as LRU from 'lru-cache';
 
 export function lruCacheDecorator(options: LRU.Options | number) {
-  return function (target: any, name: string, descriptor: PropertyDescriptor) {
+  return (target: any, name: string, descriptor: PropertyDescriptor) => {
     const { value } = descriptor;
     if (typeof value !== 'function') {
       throw new Error('lruCache expected to decorate a function');
@@ -13,19 +13,19 @@ export function lruCacheDecorator(options: LRU.Options | number) {
 
     descriptor.value = wrapped;
     return descriptor;
-  }
+  };
 }
 
-export type Function = (...args: any[]) => any;
+export type Func = (...args: any[]) => any;
 
-export function lruCache<T extends Function>(
+export function lruCache<T extends Func>(
   opts: LRU.Options | number,
   func: T,
 ): T {
 
-  const cache = new LRU(<LRU.Options>opts);
+  const cache = new LRU(opts as LRU.Options);
 
-  return <T> function (...args: any[]): any {
+  const wrapped = (...args: any[]): any => {
     const existing = cache.get(args);
     if (existing !== undefined) {
       return existing;
@@ -33,5 +33,7 @@ export function lruCache<T extends Function>(
     const result = func(...args);
     cache.set(args, result);
     return result;
-  }
+  };
+
+  return wrapped as T;
 }

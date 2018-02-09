@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import app from './app';
 import * as _debug from 'debug';
 import * as http from 'http';
+import app from './app';
 
 if (process.env.NODE_ENV !== 'production') {
+  // tslint:disable-next-line:no-var-requires
   require('longjohn');
 }
 
@@ -13,13 +14,13 @@ const debug = _debug('demo:server');
 type Port = string | number;
 
 /** Get port from environment and store in Express. */
-const port: Port = normalizePort(process.env.PORT || '3001');
+const PORT: Port = normalizePort(process.env.PORT || '3001');
 
 /** Create HTTP server. */
 const server = http.createServer(app.callback());
 
 // Listen on provided port, on all network interfaces.
-server.listen(port);
+server.listen(PORT);
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -44,8 +45,8 @@ function normalizePort(val: string): Port {
 }
 
 interface ServerError extends Error {
-  syscall?: string,
-  code?: string,
+  syscall?: string;
+  code?: string;
 }
 
 /**
@@ -56,20 +57,18 @@ function onError(error: ServerError) {
     throw error;
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof PORT === 'string'
+    ? 'Pipe ' + PORT
+    : 'Port ' + PORT;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
-      break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(`${bind} is already in use`);
       process.exit(1);
-      break;
     default:
       throw error;
   }
