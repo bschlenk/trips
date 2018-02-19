@@ -1,0 +1,52 @@
+.TextInput {
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 1.25rem;
+  outline: none;
+  text-overflow: ellipses;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.TextInput__Clearable {
+  position: relative;
+}
+
+.TextInput__Clearable .TextInput {
+  padding-right: 2.5rem;
+}
+
+.TextInput__Clear {
+  position: absolute;
+  right: 6px;
+  display: inline-block;
+  top: 0;
+  transform: translateY(-50%);
+  border: none;
+  font-size: 1rem;
+  color: #ccc;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.TextInput__Clear--empty {
+  display: none;
+}
+
+.TextInput__Clear:active {
+  color: #aaa;
+}
+
+@media only screen and (min-width: 500px) {
+  .TextInput {
+    font-size: 1rem;
+    height: 32px;
+  }
+}

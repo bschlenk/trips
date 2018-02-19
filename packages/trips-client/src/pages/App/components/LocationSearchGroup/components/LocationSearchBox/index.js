@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
+import TextInput from 'components/TextInput';
 import './style.css';
-
-function Input({ placeholder, className, ...props }) {
-  return (
-    <input
-      className={className}
-      type="text"
-      placeholder={placeholder}
-      {...props}
-    />
-  );
-}
 
 export default class LocationSearchBox extends Component {
   static propTypes = {
@@ -45,9 +35,9 @@ export default class LocationSearchBox extends Component {
         onPlacesChanged={this.onPlacesChanged}
         bounds={bounds}
       >
-        <Input
-          className="LocationSearchBox__Input"
+        <TextInput
           placeholder={placeholder}
+          clearable
         />
       </StandaloneSearchBox>
     );
