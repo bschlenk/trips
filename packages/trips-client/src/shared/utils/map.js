@@ -5,20 +5,27 @@
  */
 export function findLocation() {
   // Try HTML5 geolocation.
-  return new Promise((res, rej) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        res(pos);
-      }, () => {
-        rej("Geolocation service failed");
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      rej("Browser doesn't support geolocation");
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error(`Browser doesn't support geolocation`));
+      return;
     }
+
+    function success(position) {
+      resolve({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      });
+    }
+
+    function error(err) {
+      reject(new Error(`Geolocation service failed: ${err.message}`));
+    }
+
+    const options = {
+      enableHighAccuracy: true,
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
   });
 }
