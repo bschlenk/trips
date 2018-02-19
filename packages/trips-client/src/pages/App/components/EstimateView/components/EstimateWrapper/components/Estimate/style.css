@@ -1,47 +1,38 @@
 .Estimate {
   list-style: none;
   display: block;
-  border: 1px solid transparent;
   border-radius: 1px;
   width: 100%;
   padding: 0;
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  font-size: 14px;
   background-color: white;
   outline: none;
 }
 
 .Estimate__Header {
   width: 100%;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 5px;
-  font-size: 1.75rem;
+  padding: 5px;
+  font-size: 1.25rem;
+  background-color: #f1f1f1;
 }
 
 .Estimate__Header > span {
-  padding: 0 5px;
-}
-
-.Estimate__Header__Service {
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom-right-radius: 3px;
-  border-top-left-radius: 3px;
-  background-color: #444;
-  color: #fff;
+  display: inline-block;
+  margin-right: 0.25em;
 }
 
 .Estimate__Header__Flavor {
-  color: #333;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom-right-radius: 3px;
+  font-weight: bold;
 }
 
 
 .Estimate__InfoGroup {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family:
+    Impact,
+    Haettenschweiler,
+    'Arial Narrow Bold',
+    sans-serif;
   font-weight: normal;
   display: flex;
   flex-direction: row;

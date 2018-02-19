@@ -15,13 +15,13 @@ export default function Estimate(props) {
 
   return (
     <li className="Estimate">
-      {false && <header className="Estimate__Header">
+      <header className="Estimate__Header">
         <span className="Estimate__Header__Service">
           {service}
         </span>
         {flavor
-          && <span className="Estimate__Header__Flavor">{flavor}</span>}
-      </header>}
+          && <span className="Estimate__Header__Flavor">: {flavor}</span>}
+      </header>
       <div className="Estimate__InfoGroup">
         <AppIcon className="Estimate__AppIcon" app={service} />
         <Duration className="Estimate__Duration" value={duration} />
