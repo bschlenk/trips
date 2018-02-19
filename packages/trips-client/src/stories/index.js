@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button } from '@storybook/react/demo';
-import Estimate from '../pages/App/components/EstimateView/components/Estimate';
+import Estimate from '../pages/App/components/EstimateView/components/EstimateWrapper/components/Estimate';
 
 storiesOf('Estimate', module)
   .add('for Uber', () => (
