@@ -2,4 +2,6 @@
   position: absolute;
   top: 0.5rem;
   z-index: 10;
+  overflow: hidden;
+  border-radius: 3px;
 }
