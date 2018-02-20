@@ -11,9 +11,10 @@ export default function({
   return React.cloneElement(
     only, {
       className: cn(
-        'ResponsiveCentered',
+        'Centered',
         only.props.className,
         className,
       ),
     });
 }
+export default injectClass('Centered');
