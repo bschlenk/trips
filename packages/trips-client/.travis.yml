@@ -9,7 +9,7 @@ deploy:
   secret_access_key:
     secure: plKiI0MA1zEzndwmVwzMVVwJLxYfH0aA5koJhT3qC32W3iPQ4dygZ+dZXK4Czl0si60Mq881GXmgt8y/IUT5VlSZBS6cda8utmOh50F52SzaLUam+D0VF/UvfqR3ztu8AYxZKFLAhTDe8Gk0xPBTk15g4FdJH/VyysFUhqeJhX7+iegXWq3v94gSL2hIwCMU72iaZsw10FAzS1+G2eMmxJsW+i1DddjZRXHaT2G4tePQxYN5W38GFAGiTXOX1vzcikfL5N9zWkgDhBJQVimWNvAozEK493n0QBNmF2mB6p/D4nKzvTXDYscmz9fi1BFH8ZToS+mgW0q047+5Hc4GTy8Ow2ObEwDhwkJi+N0qph0rqLoU6bZfo16aS+2BRIPjofyD4dfmSRRIOqg9ihu50+mmojGaDmsuQj5cFjsj4z3jqZNjb69jDA554E2gg4Z9lh7iLO8fJw8h9DRYPngjD/JPBbk3p8eZUdVj9xeVX5hvaBrmccUUvxPMZrx36yf3mYWnZdkFA9LFtt5l4GGnEWPbLifPtUvapiBJq4xSk7ZVWW95c2u6rOkFsihgMq+bR0GxtAUg7Ao+u/SesCPSbqFnykiuTjO5Yy1VN8QXojVa0CSSEb9fgNdJeejAN7+W6OOsPyzOMrBXzi8vnaCOvZiJ1XiGgEPAyJtcHXGbWXY=
   bucket: trips.bschlenk.com
-  local-dir: build/
+  local-dir: build
   acl: private
   on:
     repo: bschlenk/trips-client
