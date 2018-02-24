@@ -11,6 +11,7 @@ deploy:
   bucket: trips.bschlenk.com
   local-dir: build
   acl: private
+  skip_cleanup: true
   on:
     repo: bschlenk/trips-client
 cache:
