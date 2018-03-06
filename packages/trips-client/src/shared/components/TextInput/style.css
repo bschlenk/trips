@@ -7,9 +7,10 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   font-size: 1.25rem;
   outline: none;
-  text-overflow: ellipses;
+  text-overflow: ellipsis;
   border-radius: 0;
   -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .TextInput__Clearable {
