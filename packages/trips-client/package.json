@@ -16,11 +16,13 @@
     "@storybook/addons": "^3.3.10",
     "@storybook/react": "^3.3.10",
     "babel-core": "^6.26.0",
-    "react-scripts": "^1.0.17"
+    "react-scripts": "^1.0.17",
+    "source-map-explorer": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "analyze": "source-map-explorer build/static/js/main.*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "./scripts/deploy.sh",
