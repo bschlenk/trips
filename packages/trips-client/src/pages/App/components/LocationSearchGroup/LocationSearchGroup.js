@@ -7,6 +7,7 @@ import './LocationSearchGroup.css';
 export default class LocationSearchGroup extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    bounds: PropTypes.object,
   }
 
   onStartChange = (start) => {
@@ -35,10 +36,12 @@ export default class LocationSearchGroup extends Component {
           <LocationSearchBox
             placeholder="Starting Point"
             onChange={this.onStartChange}
+            bounds={this.props.bounds}
           />
           <LocationSearchBox
             placeholder="Destination"
             onChange={this.onEndChange}
+            bounds={this.props.bounds}
           />
         </div>
       </Centered>

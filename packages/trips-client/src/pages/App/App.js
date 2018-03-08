@@ -4,6 +4,7 @@ import EstimateView from './components/EstimateView/EstimateView';
 import LocationSearchGroup from './components/LocationSearchGroup/LocationSearchGroup';
 import * as client from 'utils/client';
 import findLocation from 'utils/findLocation';
+import getBounds from 'utils/getBounds';
 import './App.css';
 
 export default class App extends Component {
@@ -11,12 +12,14 @@ export default class App extends Component {
     location: undefined,
     error: null,
     loading: false,
+    bounds: null,
   }
 
   componentDidMount() {
     findLocation().then(location => {
       console.log('setting location to', location);
-      this.setState({ location });
+      const bounds = getBounds(location);
+      this.setState({ location, bounds });
     }).catch(error => {
       this.setState({ error });
     });
