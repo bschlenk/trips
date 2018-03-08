@@ -3,7 +3,7 @@
  * by the browser.
  * @return {Promise<{lat: number, lng: number}>} The lat/lng coords.
  */
-export function findLocation() {
+export default function findLocation() {
   // Try HTML5 geolocation.
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {

@@ -3,7 +3,7 @@ import MapView from './components/MapView/MapView';
 import EstimateView from './components/EstimateView/EstimateView';
 import LocationSearchGroup from './components/LocationSearchGroup/LocationSearchGroup';
 import * as client from 'utils/client';
-import { findLocation } from 'utils/map';
+import findLocation from 'utils/findLocation';
 import './App.css';
 
 export default class App extends Component {
