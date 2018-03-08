@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import LocationSearchBox from './components/LocationSearchBox';
-import Centered from 'components/Centered';
-import './style.css';
+import LocationSearchBox from './components/LocationSearchBox/LocationSearchBox';
+import Centered from 'components/Centered/Centered';
+import './LocationSearchGroup.css';
 
 export default class LocationSearchGroup extends Component {
   static propTypes = {

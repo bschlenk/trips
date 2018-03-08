@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { noop } from 'utils/functions';
-import './style.css';
+import './MapView.css';
 
 const DEFAULT_ZOOM = 16;
 const DEFAULT_LOCATION = { lat: 47.613869, lng: -122.331772 };

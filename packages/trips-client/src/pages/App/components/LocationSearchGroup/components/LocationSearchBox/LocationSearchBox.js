@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
-import TextInput from 'components/TextInput';
-import './style.css';
+import TextInput from 'components/TextInput/TextInput';
+import './LocationSearchBox.css';
 
 export default class LocationSearchBox extends Component {
   static propTypes = {

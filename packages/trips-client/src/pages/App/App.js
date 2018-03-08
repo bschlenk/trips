@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import MapView from './components/MapView';
-import LocationSearchGroup from './components/LocationSearchGroup';
-import EstimateView from './components/EstimateView';
+import MapView from './components/MapView/MapView';
+import EstimateView from './components/EstimateView/EstimateView';
+import LocationSearchGroup from './components/LocationSearchGroup/LocationSearchGroup';
 import * as client from 'utils/client';
 import { findLocation } from 'utils/map';
-import './style.css';
+import './App.css';
 
 export default class App extends Component {
   state = {

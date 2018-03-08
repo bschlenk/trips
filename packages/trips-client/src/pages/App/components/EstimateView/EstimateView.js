@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash-es/range';
-import EstimateWrapper from './components/EstimateWrapper';
-import EstimateFacade from './components/EstimateFacade';
-import Centered from 'components/Centered';
-import './style.css';
+
+import EstimateWrapper from './components/EstimateWrapper/EstimateWrapper';
+import EstimateFacade from './components/EstimateFacade/EstimateFacade';
+import Centered from 'components/Centered/Centered';
+
+import './EstimateView.css';
 
 export default class EstimateView extends Component {
   static propTypes = {

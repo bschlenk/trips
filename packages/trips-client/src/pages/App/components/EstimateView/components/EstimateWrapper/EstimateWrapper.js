@@ -1,6 +1,6 @@
 import React from 'react';
-import Estimate from './components/Estimate';
-import EstimateError from './components/EstimateError';
+import Estimate from './components/Estimate/Estimate';
+import EstimateError from './components/EstimateError/EstimateError';
 
 export default function EstimateWrapper(props) {
   const { service, estimate, error } = props.estimate;

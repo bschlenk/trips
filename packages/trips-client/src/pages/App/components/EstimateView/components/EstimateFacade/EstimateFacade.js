@@ -1,6 +1,6 @@
 import React from 'react';
-import AppIcon from 'components/AppIcon';
-import './style.css';
+import AppIcon from 'components/AppIcon/AppIcon';
+import './EstimateFacade.css';
 
 export default function EstimateFacade(props) {
   return (

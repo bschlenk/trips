@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppIcon from 'components/AppIcon';
-import Price from './components/Price';
-import Duration from './components/Duration';
-import './style.css';
+import AppIcon from 'components/AppIcon/AppIcon';
+import Price from './components/Price/Price';
+import Duration from './components/Duration/Duration';
+import './Estimate.css';
 
 export default function Estimate(props) {
   const {

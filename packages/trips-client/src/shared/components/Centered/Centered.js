@@ -1,4 +1,4 @@
 import injectClass from 'utils/injectClass';
-import './style.css';
+import './Centered.css';
 
 export default injectClass('Centered');
