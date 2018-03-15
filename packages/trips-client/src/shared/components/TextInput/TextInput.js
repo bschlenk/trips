@@ -78,6 +78,7 @@ export default class TextInput extends Component {
             this.input.focus();
             this.setState({ isEmpty: true });
           }}
+          tabIndex={-1}
         >
           &times;
         </button>
