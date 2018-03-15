@@ -18,8 +18,7 @@ export default function EstimateView({
         {
           loading
             ? range(4).map(() => <EstimateFacade />)
-            : this.props.estimates.map(estimate => (
-              <EstimateWrapper {...{ estimate }} />))
+            : estimates.map(estimate => <EstimateWrapper {...{ estimate }} />)
         }
       </ul>
     </Centered>
