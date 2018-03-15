@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import range from 'lodash-es/range';
+import range from 'lodash/range';
 
 import EstimateWrapper from './components/EstimateWrapper/EstimateWrapper';
 import EstimateFacade from './components/EstimateFacade/EstimateFacade';

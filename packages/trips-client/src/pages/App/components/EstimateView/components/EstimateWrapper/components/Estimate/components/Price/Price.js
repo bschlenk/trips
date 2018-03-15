@@ -1,5 +1,5 @@
 import React from 'react';
-import isNumber from 'lodash-es/isNumber';
+import isNumber from 'lodash/isNumber';
 
 function priceDisplay(cents) {
   const dollars = (cents / 100).toFixed(2);
