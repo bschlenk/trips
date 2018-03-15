@@ -1,5 +1,5 @@
 /**
- * Get the bounds from the center of a cirlce and it's radius.
+ * Get the bounds from the center of a cirlce and its radius.
  *
  * @param {{ lat: number, lng: number }} coords The coordindates of the center
  *     of the circle.

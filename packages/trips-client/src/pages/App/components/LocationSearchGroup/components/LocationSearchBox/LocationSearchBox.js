@@ -9,6 +9,7 @@ export default class LocationSearchBox extends Component {
     onChange: PropTypes.func.isRequired,
     bounds: PropTypes.object,
     placeholder: PropTypes.string,
+    initialValue: PropTypes.string,
   }
 
   onPlacesChanged = () => {
@@ -24,6 +25,7 @@ export default class LocationSearchBox extends Component {
   render() {
     const {
       bounds,
+      initialValue,
       placeholder = 'Enter Location',
     } = this.props;
 
@@ -38,6 +40,7 @@ export default class LocationSearchBox extends Component {
         <TextInput
           placeholder={placeholder}
           clearable
+          initialValue={initialValue}
         />
       </StandaloneSearchBox>
     );

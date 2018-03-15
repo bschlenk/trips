@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { noop } from 'utils/functions';
+import getContainingBounds from 'utils/getContainingBounds';
+import isNotEmptyArray from 'utils/isNotEmptyArray';
 import './MapView.css';
 
 const DEFAULT_ZOOM = 16;
@@ -28,24 +30,22 @@ const MapViewInternal = withGoogleMap((props) => {
 
 export default class MapView extends Component {
   static propTypes = {
-    location: PropTypes.object,
+    locations: PropTypes.array,
   }
 
-  componentDidMount() {
-    /*
-    const bounds = this.googleMap.getBounds();
-    if (bounds && this.props.onBoundsChanged) {
-      this.props.onBoundsChanged(bounds);
+  static defaultProps = {
+    locations: [],
+  }
+
+  componentWillReceiveProps({ locations }) {
+    if (isNotEmptyArray(locations)) {
+      const bounds = getContainingBounds(locations);
+      this.googleMap.fitBounds(bounds);
     }
-    */
   }
 
   render() {
-    const { location = DEFAULT_LOCATION, ...rest } = this.props;
-    const props = {
-      center: location,
-      ...rest,
-    };
+    const { locations, ...props } = this.props;
     return (
       <MapViewInternal
         containerElement={
@@ -55,9 +55,10 @@ export default class MapView extends Component {
           <div className="MapView__map" />
         }
         onLoad={ref => this.googleMap = ref}
+        onBoundsChanged={this.onBoundsChanged}
         {...props}
       >
-        <Marker position={location} />
+        {locations.map((location, i) => <Marker key={i} position={location} />)}
       </MapViewInternal>
     );
   }
