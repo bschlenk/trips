@@ -1,5 +1,6 @@
 import * as _debug from 'debug';
 import * as Lyft from 'lyft-node';
+import * as querystring from 'querystring';
 import { Estimate, EstimateProvider, EstimateResult } from './estimate';
 import { Location } from './locations';
 import Service from './service';
@@ -19,6 +20,23 @@ const rideTypes: Lyft.RideType[] = [
   'lyft_plus',
 ];
 
+/**
+ * @see https://developer.lyft.com/docs/universal-links
+ */
+function createDeepLink(start: Location, end: Location, flavor: Lyft.RideType) {
+  const qs = querystring.stringify({
+    // TODO: can this not be lyft_line?
+    id: flavor,
+    partner: LYFT_CLIENT_ID,
+    'pickup[latitude]': start.latitude,
+    'pickup[longitude]': start.longitude,
+    'destination[latitude]': end.latitude,
+    'destination[longitude]': end.longitude,
+  });
+
+  return `https://lyft.com/ride?${qs}`;
+}
+
 const provider: EstimateProvider = {
   getPriceEstimates(start: Location, end: Location): Promise<EstimateResult[]> {
     return Promise.all(rideTypes.map(async (rideType) => {
@@ -33,9 +51,11 @@ const provider: EstimateProvider = {
         }
 
         debug('returning data from lyft');
+        const link = createDeepLink(start, end, rideType);
         return {
           service: Service.LYFT,
           estimate: {
+            link,
             flavor: data.display_name,
             duration: data.estimated_duration_seconds,
             price: {

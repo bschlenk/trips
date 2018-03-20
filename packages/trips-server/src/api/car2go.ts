@@ -33,6 +33,17 @@ const displayNames: {[key: string]: string} = {
   CLA: 'Mercedes-Benz CLA',
 };
 
+/**
+ * This is a hack. I couldn't find any documentation on opening
+ * car2go from a link, but this seems to work. Because we don't know
+ * anything about car locations, opening the app is the best we can do.
+ * TODO: test on android
+ * @see https://www.appsight.io/app/car2go
+ */
+function createDeepLink() {
+  return 'car2go://open';
+}
+
 const provider: EstimateProvider = {
   async getPriceEstimates(start: Location, end: Location) {
     try {
@@ -44,6 +55,7 @@ const provider: EstimateProvider = {
           service: Service.CAR2GO,
           estimate: {
             duration,
+            link: createDeepLink(),
             flavor: displayNames[flavor],
             price: pricePoint(price),
           },

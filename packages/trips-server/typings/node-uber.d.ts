@@ -29,6 +29,7 @@ declare module 'node-uber' {
         duration: number,
         high_estimate: number,
         low_estimate: number,
+        product_id: string,
       }[];
     }
   }

@@ -24,6 +24,8 @@ export interface Estimate {
   duration: number;
   /** The type of ride, specific to the service. */
   flavor?: string;
+  /** The url/deeplink to start the service. */
+  link?: string;
 }
 
 /**

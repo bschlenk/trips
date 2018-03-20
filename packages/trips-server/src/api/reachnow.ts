@@ -13,6 +13,14 @@ const pricing: PriceStructure = {
   day: 8000,
 };
 
+/**
+ * This is a hack, not sure what to put after the reachnow scheme.
+ * @see https://www.appsight.io/app/reachnow-carsharing-by-bmw-bmw-i-mini
+ */
+function createDeepLink() {
+  return 'reachnow://open';
+}
+
 const provider: EstimateProvider = {
   async getPriceEstimates(start: Location, end: Location) {
     try {
@@ -25,6 +33,7 @@ const provider: EstimateProvider = {
           estimate: {
             duration,
             price: pricePoint(price),
+            link: createDeepLink(),
           },
         },
       ];
