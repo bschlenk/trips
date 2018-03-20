@@ -1,7 +1,6 @@
 .Estimate {
   list-style: none;
   display: block;
-  border-radius: 1px;
   width: 100%;
   padding: 0;
   border-radius: 3px;
@@ -26,7 +25,6 @@
   font-weight: bold;
 }
 
-
 .Estimate__InfoGroup {
   font-family:
     Impact,
@@ -43,9 +41,18 @@
   padding: 5px;
 }
 
+.Estimate__AppLink {
+  flex: 0;
+}
+
 .Estimate__AppIcon {
   height: 100%;
-  flex: 0;
+  /*
+    This prevents some whitespace below the icon
+    when inside an anchor tag. Not sure what
+    causes the space, will look into it later.
+  */
+  display: block;
 }
 
 .Estimate__Duration {
