@@ -10,11 +10,6 @@ const debug = _debug('app:car2go');
 const fees = 100; // driver protection fee
 
 const pricing: {[key: string]: PriceStructure} = {
-  FOR_TWO: {
-    minute: 35,
-    hour: 1500,
-    day: 5900,
-  },
   GLA: {
     minute: 45,
     hour: 1900,
@@ -28,7 +23,6 @@ const pricing: {[key: string]: PriceStructure} = {
 };
 
 const displayNames: {[key: string]: string} = {
-  FOR_TWO: 'For Two',
   GLA: 'Mercedes-Benz GLA',
   CLA: 'Mercedes-Benz CLA',
 };
