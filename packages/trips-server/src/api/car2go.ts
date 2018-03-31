@@ -7,7 +7,8 @@ import Service from './service';
 
 const debug = _debug('app:car2go');
 
-const fees = 100; // driver protection fee
+const FEES = 100; // driver protection fee
+const TAX_RATE = .178;
 
 const pricing: {[key: string]: PriceStructure} = {
   GLA: {
@@ -27,11 +28,17 @@ const displayNames: {[key: string]: string} = {
   CLA: 'Mercedes-Benz CLA',
 };
 
+function updatePrice(inputPrice: number): number {
+  const price = inputPrice + FEES;
+  const tax = price * TAX_RATE;
+  return price + tax;
+}
+
 /**
  * This is a hack. I couldn't find any documentation on opening
  * car2go from a link, but this seems to work. Because we don't know
  * anything about car locations, opening the app is the best we can do.
- * TODO: test on android
+ * TODO: This does not work on android.
  * @see https://www.appsight.io/app/car2go
  */
 function createDeepLink() {
@@ -43,7 +50,7 @@ const provider: EstimateProvider = {
     try {
       const { distance, duration } = await computeDistance(start, end);
       return Object.entries(pricing).map(([flavor, prices]) => {
-        const price = calculateCost(duration, prices) + fees;
+        const price = updatePrice(calculateCost(duration, prices));
         debug('returning data from car2go');
         return {
           service: Service.CAR2GO,
