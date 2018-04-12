@@ -7,6 +7,9 @@ import Service from './service';
 
 const debug = _debug('app:car2go');
 
+const FEES = 100;
+const TAX_RATE = .178;
+
 const pricing: PriceStructure = {
   minute: 41,
   hour: 2000,
@@ -21,11 +24,17 @@ function createDeepLink() {
   return 'reachnow://open';
 }
 
+function updatePrice(inputPrice: number): number {
+  const price = inputPrice + FEES;
+  const tax = price * TAX_RATE;
+  return price + tax;
+}
+
 const provider: EstimateProvider = {
   async getPriceEstimates(start: Location, end: Location) {
     try {
       const { distance, duration } = await computeDistance(start, end);
-      const price = calculateCost(duration, pricing);
+      const price = updatePrice(calculateCost(duration, pricing));
       debug('returning data from reachnow');
       return [
         {
