@@ -17,11 +17,11 @@
     "env": "printenv"
   },
   "dependencies": {
-    "@google/maps": "^0.4.5",
+    "@google/maps": "^0.5.5",
     "babel-polyfill": "^6.23.0",
     "car2go": "^0.0.1",
     "debug": "^3.1.0",
-    "dotenv-safe": "^4.0.4",
+    "dotenv-safe": "^6.0.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-convert": "^1.2.0",
@@ -40,9 +40,9 @@
   "devDependencies": {
     "@types/debug": "^0.0.30",
     "@types/dotenv": "^4.0.2",
-    "@types/dotenv-safe": "^4.0.1",
-    "@types/jest": "^21.1.9",
-    "@types/koa-bodyparser": "^3.0.26",
+    "@types/dotenv-safe": "^5.0.0",
+    "@types/jest": "^23.3.1",
+    "@types/koa-bodyparser": "^5.0.1",
     "@types/koa-json": "^2.0.18",
     "@types/koa-logger": "^3.1.0",
     "@types/koa-router": "^7.0.27",
@@ -50,14 +50,14 @@
     "@types/koa-views": "^2.0.3",
     "@types/lodash": "^4.14.100",
     "@types/lru-cache": "^4.1.0",
-    "@types/node": "^9.3.0",
+    "@types/node": "^10.9.4",
     "@types/node-geocoder": "^3.19.0",
-    "jest": "^21.2.1",
+    "jest": "^23.5.0",
     "nodemon": "^1.12.5",
-    "ts-jest": "^21.2.4",
+    "ts-jest": "^23.1.4",
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.6.0",
-    "typescript": "^2.6.2"
+    "typescript": "^3.0.3"
   },
   "engines": {
     "node": "9"
